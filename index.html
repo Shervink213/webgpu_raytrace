@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/%20webgpu_raytrace/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WebGPU</title>
+      <script type="module" crossorigin src="/%20webgpu_raytrace/assets/index-wfRyBZR9.js"></script>
+      <link rel="stylesheet" crossorigin href="/%20webgpu_raytrace/assets/index-LSrvmBOW.css">
+    </head>
+    <body class="p-4 bg-slate-900">
+        <h1 class="text-4xl text-center prose text-white">
+            WebGPU Ray Traced Reflections
+        </h1>
+        <div class="flex flex-row">
+            <div class="p-2">
+                <canvas id="canvas" width="512" height="512"></canvas>
+            </div>
+            <div class="flex flex-col p-2 prose gap-y-2">
+                <label for="count" class="text-lg prose text-gray-400"
+                    >Amount of spheres</label
+                >
+                <input
+                    type="number"
+                    id="count"
+                    placeholder="Enter amount of spheres"
+                    value="12"
+                    class="p-2 mb-2 bg-slate-800 text-white w-full rounded-lg outline-none"
+                />
+
+                <label for="bounces" class="text-lg prose text-gray-400"
+                    >Amount of bounces</label
+                >
+                <input
+                    type="number"
+                    id="bounces"
+                    placeholder="Enter amount of bounces"
+                    value="4"
+                    class="p-2 mb-2 bg-slate-800 text-white w-full rounded-lg outline-none"
+                />
+
+                <label for="canvas size" class="text-lg prose text-gray-400"
+                    >Canvas size (Bigger canvas = more rays)</label
+                >
+                <div class="flex flex-row gap-x-2">
+                    <input
+                        type="number"
+                        id="canvas_width"
+                        placeholder="Enter canvas size"
+                        value="512"
+                        class="p-2 mb-2 bg-slate-800 text-white w-full rounded-lg outline-none"
+                    />
+                    <p>x</p>
+                    <input
+                        type="number"
+                        id="canvas_height"
+                        placeholder="Enter canvas size"
+                        value="512"
+                        class="p-2 mb-2 bg-slate-800 text-white w-full rounded-lg outline-none"
+                    />
+                </div>
+                <div class="">
+                    <p class="prose text-lg text-white">Render times</p>
+                    <div class="p-2 text-white">
+                        <div
+                            class="flex flex-row prose text-lg text-white gap-x-2"
+                        >
+                            Current render time:
+                            <span
+                                id="render_time"
+                                class="prose text-lg text-white"
+                            ></span>
+                        </div>
+                        <div
+                            class="flex flex-row prose text-lg text-white gap-x-2"
+                        >
+                            FPS:
+                            <span
+                                id="fps"
+                                class="prose text-lg text-white"
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+    </body>
+</html>
