@@ -1,6 +1,6 @@
 {
     "name": "webgpy-project",
-    "homepage": "https://Shervink213.github.io/webgpu_raytrace/",
+    "homepage": "https://shervink213.github.io/webgpu_raytrace/",
     "private": true,
     "version": "0.0.0",
     "type": "module",
