@@ -1,6 +1,7 @@
+
 @group(0) @binding(0) var screen_sampler: sampler;
 @group(0) @binding(1) var color_buffer: texture_2d<f32>;
-
+@group(0) @binding(2) var depth_buffer: texture_2d<f32>;
 struct VertexOutput {
     @builtin(position) Position: vec4<f32>,
     @location(0) TexCoord: vec2<f32>,
