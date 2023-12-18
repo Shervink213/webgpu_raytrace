@@ -56,11 +56,17 @@ struct RenderState {
 @group(0) @binding(6) var skySampler: sampler;
 
 
-@compute @workgroup_size(2,2) 
+@compute @workgroup_size(16,16) 
 fn main(@builtin(global_invocation_id) GlobalInvocationID: vec3<u32>) {
 
     let screen_size: vec2<u32> = (textureDimensions(color_buffer));
     let screen_pos = vec2<i32>(i32(GlobalInvocationID.x), i32(GlobalInvocationID.y));
+
+    // Commented out because this gets rid of the reflections for outside of the screen, making the spheres black
+    // but great for optimization
+    // if i32(screen_pos.x) >= i32(screen_size.x) || i32(screen_pos.y) >= i32(screen_size.y) {
+    //     return;
+    // }
 
     let horizontal_coefficient: f32 = (f32(screen_pos.x) - f32(screen_size.x) / 2) / f32(screen_size.x);
     let vertical_coefficient: f32 = (f32(screen_pos.y) - f32(screen_size.y) / 2) / f32(screen_size.x);

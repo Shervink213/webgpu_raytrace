@@ -44,12 +44,12 @@ export class Render {
     async init() {
         await this.setUpDevice();
         await this.makeComputeBindGroupLayouts();
-        // await this.createAssets();
+
         await this.createComputeAssets();
         await this.makeDepthBuffer();
 
         await this.makeComputeBindGroups();
-        // await this.createPipeline();
+
         await this.createComputePipeline();
     }
 
@@ -69,8 +69,6 @@ export class Render {
             format: this.canvasFormat,
             alphaMode: "opaque",
         });
-
-        console.log(this.device);
     }
 
     async makeComputeBindGroupLayouts() {
@@ -200,12 +198,12 @@ export class Render {
 
         this.skyMaterial = new CubeMapMaterial();
         const urls = [
-            "/sky/sky_front.png",
-            "/sky/sky_back.png",
-            "/sky/sky_left.png",
-            "/sky/sky_right.png",
-            "/sky/sky_bottom.png",
-            "/sky/sky_top.png",
+            "/webgpu_raytrace/sky_front.png",
+            "/webgpu_raytrace/sky_back.png",
+            "/webgpu_raytrace/sky_left.png",
+            "/webgpu_raytrace/sky_right.png",
+            "/webgpu_raytrace/sky_bottom.png",
+            "/webgpu_raytrace/sky_top.png",
         ];
         await this.skyMaterial.init(this.device!, urls);
     }
@@ -455,8 +453,8 @@ export class Render {
         rayTracePass.setPipeline(this.ray_tracing_pipeline!);
         rayTracePass.setBindGroup(0, this.ray_tracing_bind_group!);
         rayTracePass.dispatchWorkgroups(
-            this.canvas.width,
-            this.canvas.height,
+            Math.ceil(this.canvas.width / 16),
+            Math.ceil(this.canvas.height / 16),
             1
         );
         rayTracePass.end();

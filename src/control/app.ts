@@ -107,7 +107,7 @@ export class App {
             await this.render.init().then(() => (this.running = true));
         });
 
-        canvasWidth.addEventListener("change", () => {
+        canvasWidth.addEventListener("change", async () => {
             if (
                 canvasWidth.valueAsNumber < 0 ||
                 isNaN(canvasWidth.valueAsNumber)
@@ -132,9 +132,15 @@ export class App {
                 }
             }
             this.canvas.width = this.getValue(canvasWidth, 512);
+
+            this.render = new Render(this.canvas, this.scene);
+
+            // Reinitialize the render with the new scene
+            this.running = false;
+            await this.render.init().then(() => (this.running = true));
         });
 
-        canvasHeight.addEventListener("change", () => {
+        canvasHeight.addEventListener("change", async () => {
             if (
                 canvasHeight.valueAsNumber < 0 ||
                 isNaN(canvasHeight.valueAsNumber)
@@ -159,6 +165,12 @@ export class App {
                 }
             }
             this.canvas.height = this.getValue(canvasHeight, 512);
+
+            this.render = new Render(this.canvas, this.scene);
+
+            // Reinitialize the render with the new scene
+            this.running = false;
+            await this.render.init().then(() => (this.running = true));
         });
     }
 

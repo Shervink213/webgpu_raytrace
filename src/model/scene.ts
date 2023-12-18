@@ -19,7 +19,7 @@ export class ComputeScene {
         for (let i = 0; i < this.spheres.length; i++) {
             // puts the spheres in a random location
             const center: number[] = [
-                -20.0 + 100.0 * Math.random(),
+                -50.0 + 100.0 * Math.random(),
                 -50.0 + 100.0 * Math.random(),
                 -50.0 + 100.0 * Math.random(),
             ];
@@ -27,11 +27,11 @@ export class ComputeScene {
             // random radius
             const radius = 0.1 + 1.9 * Math.random();
 
-            // random color
-            const color: number[] = [
-                Math.random(),
-                Math.random(),
-                Math.random(),
+            // random color for the spheres, try to avoid black
+            let color: number[] = [
+                0.1 + 0.9 * Math.random(),
+                0.1 + 0.9 * Math.random(),
+                0.1 + 0.9 * Math.random(),
             ];
 
             this.spheres[i] = new Sphere(center, radius, color);
