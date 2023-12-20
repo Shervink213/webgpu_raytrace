@@ -1,4 +1,4 @@
-import raytracer_kernel from "./shaders/raytracer_kernel.wgsl";
+import raytrace_shader from "./shaders/raytrace_shader.wgsl";
 import screen_shader from "./shaders/screen_shader.wgsl";
 import { ComputeScene } from "../model/scene";
 import { CubeMapMaterial } from "./cube_material";
@@ -258,7 +258,7 @@ export class Render {
             layout: rayTracePipelineLayout!,
             compute: {
                 module: this.device?.createShaderModule({
-                    code: raytracer_kernel,
+                    code: raytrace_shader,
                 }),
                 entryPoint: "main",
             },

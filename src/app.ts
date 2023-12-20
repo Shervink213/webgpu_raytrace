@@ -1,5 +1,5 @@
-import { Render } from "../view/render";
-import { ComputeScene } from "../model/scene";
+import { Render } from "./view/render";
+import { ComputeScene } from "./model/scene";
 
 export class App {
     canvas: HTMLCanvasElement;

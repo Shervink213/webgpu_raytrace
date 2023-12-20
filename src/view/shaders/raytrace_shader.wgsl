@@ -95,7 +95,8 @@ fn rayColor(ray: Ray) -> vec3<f32> {
     temp_ray.origin = ray.origin;
     temp_ray.direction = ray.direction;
 
-    let bounces: u32 = u32(scene.maxBounces); // we need a max or it'll go on forever
+    let maxBounces = scene.maxBounces;
+    let bounces: u32 = u32(maxBounces);
 
     for (var bounce: u32 = 0; bounce < bounces; bounce++) {
         result = trace(temp_ray); // trace the ray (follow it to see if it hits anything)
@@ -171,7 +172,7 @@ fn trace(ray: Ray) -> RenderState {
                     continue;
                 }
             } else {
-                // 
+
                 node = leftChild;
                 if distanceRight < nearestHit {
                     stack[stackLocation] = rightChild;
@@ -208,7 +209,6 @@ fn trace(ray: Ray) -> RenderState {
 
 // reflect the ray
 fn hit_sphere(ray: Ray, sphere: Sphere, tMin: f32, tMax: f32, oldRenderState: RenderState) -> RenderState {
-    // gotten from here: https://stackoverflow.com/questions/63922206/glsl-sphere-ray-intersection-geometric-solution
     let oc = ray.origin - sphere.center;
     let a = dot(ray.direction, ray.direction);
     let b = 2.0 * dot(oc, ray.direction);

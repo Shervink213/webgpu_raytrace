@@ -1,4 +1,4 @@
-import { App } from "./control/app";
+import { App } from "./app";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 

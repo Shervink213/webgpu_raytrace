@@ -77,7 +77,6 @@ export class ComputeScene {
             let sphereIndex = this.sphereIndices![node.leftChild! + i]; // the index of the sphere in the spheres array
             let sphere = this.spheres[sphereIndex];
 
-            // the axis is the radius of the sphere
             const axis: vec3 = [sphere.radius, sphere.radius, sphere.radius];
 
             // subtract the center of the sphere from the min corner, and then take the min of the two, that is the new min corner
@@ -104,7 +103,7 @@ export class ComputeScene {
         vec3.subtract(extent, node.maxCorner!, node.minCorner!);
         let axis = 0;
 
-        // find the axis with the largest extent
+        // find the axis with the largest extent to split on
         if (extent[1] > extent[axis]) {
             axis = 1;
         }
@@ -113,7 +112,7 @@ export class ComputeScene {
         }
 
         // the split point is the middle of the min and max corners
-        const splitPoint = node.minCorner![axis] + node.maxCorner![axis] / 2;
+        const splitPoint = (node.minCorner![axis] + node.maxCorner![axis]) / 2;
 
         let i = node.leftChild!;
         let j = i + node.sphereCount! - 1;
@@ -131,7 +130,7 @@ export class ComputeScene {
         }
 
         let leftCount = i - node.leftChild!;
-        if (leftCount == 0 || leftCount == node.sphereCount) {
+        if (leftCount === 0 || leftCount === node.sphereCount) {
             return;
         }
 
